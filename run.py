@@ -107,4 +107,4 @@ if __name__=='__main__':
 
     socketio.on_namespace(MyNamespace('/'))
 
-    socketio.run(app, debug =True)
+    socketio.run(app)
