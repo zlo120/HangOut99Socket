@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <title>HangOut 99 | Login</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/animated.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/owl.css') }}">
+
+    <style>       
+
+        html, body {
+            text-align: center;
+            height: 100%;
+        }
+
+        .login-content {
+            
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            width: 25%;
+            background-color: white;
+            top: 200px;
+            filter: drop-shadow(0 0 0.25rem rgb(172, 170, 172));
+            border-radius: 10px;
+            padding: 2%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .site-logo-nav {
+            color: black;
+        }
+
+        .site-logo-nav h2 {
+            padding-top: 50px;
+            margin-bottom: 45px;
+            font-size: 60px;
+            font-weight: 800;
+            color: #2a2a2a;
+            background: -webkit-linear-gradient(to right, #402099 0%, #614fff 100%);
+            background: -moz-linear-gradient(to right, #402099 0%, #614fff 100%);
+            background: linear-gradient(to right, #402099 0%, #614fff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .form-control {
+            margin-top: 20px;
+            height: 40px;
+            width: 100%;
+            padding-left: 5%;
+            border-radius: 2px;
+            border: solid;
+            border-color: rgb(201, 201, 201);
+        }
+
+        .btn{
+            margin-top: 20px;
+            width: 100%;
+            height: 40px;
+            
+            transition: 0.15s;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background-color: rgb(52, 170, 62);
+            font-size: 15px;
+            font-weight: 400;
+            color: #fff;
+            text-transform: capitalize;
+            padding: 10px 25px;
+            border-radius: 23px;
+            letter-spacing: 0.25px;
+            border-top: 2px solid rgb(52, 170, 62)!important;
+            border-bottom: 2px solid rgb(52, 170, 62)!important;
+            border-left: 2px solid rgb(52, 170, 62)!important;
+            border-right: 2px solid rgb(52, 170, 62)!important;
+            transition: all .3s;
+        }
+        
+        .btn-primary:hover {
+            background-color: rgb(44, 121, 51)!important;
+            color: #ffffff!important;
+            border-bottom: 2px solid #33ccc5!important;
+        }
+
+
+        @media (max-width: 992px) {
+            .site-logo-nav h2 {
+                padding-top: 50px;
+                margin-bottom: 20px;
+                font-size: 40px;
+                font-weight: 800;
+                color: #2a2a2a;
+                background: -webkit-linear-gradient(to right, #402099 0%, #614fff 100%);
+                background: -moz-linear-gradient(to right, #402099 0%, #614fff 100%);
+                background: linear-gradient(to right, #402099 0%, #614fff 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .login-content {
+            
+                position: absolute;
+                left: 0;
+                right: 0;
+                margin-top: 0px;
+                margin-left: auto;
+                margin-right: auto;
+                width: 80%;
+                background-color: white;
+                top: 200px;
+                filter: drop-shadow(0 0 0.25rem rgb(172, 170, 172));
+                border-radius: 10px;
+                padding: 2%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-align: center;
+            }
+
+        }
+        
+    </style>
+
+<!--
+
+TemplateMo 563 SEO Dream
+
+https://templatemo.com/tm-563-seo-dream
+
+-->
+
+</head>
+
+<body id="login">
+
+    <main>
+        <a class="site-logo-nav" href="{{ url_for('main.index') }}"><h2>HangOut <img style="margin-top: 0px; height: 50px; width:50px;" src="{{url_for('static', filename='favicon.ico')}}" alt="99"></h2> </a>
+
+        
+        <div class="login-content">
+            
+            <form action="" method="POST">
+                {{form.hidden_tag()}}
+                <div class="form-group">
+                    <h3 style="color: rgb(88, 88, 88);"><strong>Log in</strong></h3> 
+                    
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                        <p style="color: red;">{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                    {% endwith %}                   
+
+                    {{form.username (class="black-text form-control")}}
+                    
+                </div>
+
+                <div class="form-group">
+                    {{form.password (class="black-text form-control")}}
+                </div>
+            
+                {{form.submit (class="btn btn-primary")}}
+            </form>
+            <br><hr>
+
+            <p>Don't have an account? <a style="text-decoration: underline;" href="{{url_for('user.register')}}">Register here</a></p>
+        </div>
+    </main>
+
+    
+  <!-- Scripts -->
+  <script type="text/javascript" src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='assets/js/owl-carousel.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='assets/js/animation.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='assets/js/imagesloaded.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='assets/js/custom.js') }}"></script>
+
+</body>
+</html>

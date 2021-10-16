@@ -1,0 +1,10 @@
+{% extends "template.html" %}
+
+{% block body %}
+
+<div class="error" style="text-align: center;">
+    <h1 style="font-size: 3em;">It seems you're lost...</h1>
+    <img style="height: 291px; width:418px;" src="{{ url_for('static', filename='assets/images/lost.png') }}" alt="">
+</div>
+
+{% endblock %}

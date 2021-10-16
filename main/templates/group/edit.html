@@ -1,0 +1,75 @@
+{% extends "template.html" %}
+
+{% block header %}
+<style>
+    html, body {
+        background-color: #f5f7f8;
+    }
+    .content-body {
+        text-align: center;
+        margin: auto;
+        background-color: #fff;
+        width: 50%;
+        border-radius: 5px;
+        padding:2%;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        filter: drop-shadow(0 0 0.15rem rgb(172, 170, 172));
+
+        margin-bottom: 10px;
+    }
+
+    .form-control {
+        margin-bottom: 10px;
+    }
+
+    @media (max-width: 992px) {
+
+        .content-body {
+            text-align: center;
+            margin: auto;
+            background-color: #fff;
+            width: 90%;
+            border-radius: 5px;
+            padding:2%;
+            padding-top: 5%;
+            padding-bottom: 5%;
+            filter: drop-shadow(0 0 0.15rem rgb(172, 170, 172));
+    
+            margin-bottom: 10px;
+        }
+
+    }
+
+</style>
+{% endblock %}
+
+{% block body %}
+    
+<form action="" method="POST">
+    {{ form.hidden_tag() }}
+    <div class="container">
+        <div class="row">
+
+            <div class="col-12">
+                <div class="content-body">
+
+                    <h3 class="mb-3" style="color: rgb(88, 88, 88);"><strong>Edit HangOut Group</strong></h3> 
+
+                    <div class="form-group"> 
+                        <div class="row">
+                            <div class="col-8">{{form.name (class="black-text form-control")}}</div>
+                            <div class="col-4">{{form.pin (class="black-text form-control")}}</div>
+                        </div>                            
+                    </div>
+
+                    {{form.submit (class="black-text form-control btn btn-success")}}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+{% endblock %}

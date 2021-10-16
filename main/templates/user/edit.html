@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <title>HangOut 99 | Edit</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/animated.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/owl.css') }}">
+
+    <style>       
+
+        html, body {
+            text-align: center;
+            height: 100%;
+        }
+
+        .login-content {
+            
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            width: 25%;
+            background-color: white;
+            top: 200px;
+            filter: drop-shadow(0 0 0.25rem rgb(172, 170, 172));
+            border-radius: 10px;
+            padding: 2%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .site-logo-nav {
+            color: black;
+        }
+
+        .site-logo-nav h2 {
+            padding-top: 50px;
+            margin-bottom: 45px;
+            font-size: 60px;
+            font-weight: 800;
+            color: #2a2a2a;
+            background: -webkit-linear-gradient(to right, #402099 0%, #614fff 100%);
+            background: -moz-linear-gradient(to right, #402099 0%, #614fff 100%);
+            background: linear-gradient(to right, #402099 0%, #614fff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .form-control {
+            margin-top: 20px;
+            height: 40px;
+            width: 100%;
+            padding-left: 5%;
+            border-radius: 2px;
+            border: solid;
+            border-color: rgb(201, 201, 201);
+        }
+
+        .btn{
+            margin-top: 20px;
+            width: 100%;
+            height: 40px;
+            
+            transition: 0.15s;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background-color: rgb(52, 170, 62);
+            font-size: 15px;
+            font-weight: 400;
+            color: #fff;
+            text-transform: capitalize;
+            padding: 5px 25px;
+            border-radius: 23px;
+            letter-spacing: 0.25px;
+            border-top: 2px solid rgb(52, 170, 62)!important;
+            border-bottom: 2px solid rgb(52, 170, 62)!important;
+            border-left: 2px solid rgb(52, 170, 62)!important;
+            border-right: 2px solid rgb(52, 170, 62)!important;
+            transition: all .3s;
+        }
+          
+        .btn-primary:hover {
+            background-color: rgb(44, 121, 51)!important;
+            color: #ffffff!important;
+            border-bottom: 2px solid #33ccc5!important;
+        }
+
+        @media (max-width: 992px) {
+
+            .image-picker img {
+                width: 80px;
+                height: 80px;
+            }
+
+            .site-logo-nav h2 {
+                padding-top: 50px;
+                margin-bottom: 20px;
+                font-size: 40px;
+                font-weight: 800;
+                color: #2a2a2a;
+                background: -webkit-linear-gradient(to right, #402099 0%, #614fff 100%);
+                background: -moz-linear-gradient(to right, #402099 0%, #614fff 100%);
+                background: linear-gradient(to right, #402099 0%, #614fff 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .login-content {
+            
+                position: absolute;
+                left: 0;
+                right: 0;
+                margin-top: 0px;
+                margin-left: auto;
+                margin-right: auto;
+                width: 80%;
+                background-color: white;
+                top: 200px;
+                filter: drop-shadow(0 0 0.25rem rgb(172, 170, 172));
+                border-radius: 10px;
+                padding: 2%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-align: center;
+            }
+        }
+
+        ul {
+            -webkit-column-count: 3;
+            -moz-column-count: 3;
+            column-count: 3;
+        }
+
+        .modal img:hover {
+            cursor: pointer;
+        }        
+        
+    </style>
+
+<!--
+
+TemplateMo 563 SEO Dream
+
+https://templatemo.com/tm-563-seo-dream
+
+-->
+
+</head>
+
+<body id="login" ondragstart="return false">
+    
+    <main>
+
+        <!-- Modal -->
+        <div class="modal fade" id="Profile-Modal" tabindex="-1" aria-labelledby="ProfileLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="ProfilelLabel">Pick Your Avatar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <ul class="image-picker">
+                            <li><img id="Profile" src="{{ url_for('static', filename='Profiles/Profile.png') }}" onclick="imgClick('Profile')" style="margin-top: 5%; max-width: 150px; " height="150px" alt=""></li>
+                            <li><img id="Profile1" src="{{ url_for('static', filename='Profiles/Profile1.png') }}" onclick="imgClick('Profile1')" style="margin-top: 5%; max-width: 150px; " height="150px" alt=""></li>
+                            <li><img id="Profile2" src="{{ url_for('static', filename='Profiles/Profile2.png') }}" onclick="imgClick('Profile2')" style="margin-top: 5%; max-width: 150px; " height="150px" alt=""></li>
+                            <li><img id="Profile3" src="{{ url_for('static', filename='Profiles/Profile3.png') }}" onclick="imgClick('Profile3')" style="margin-top: 5%; max-width: 150px; " height="150px" alt=""></li>
+                            <li><img id="Profile4" src="{{ url_for('static', filename='Profiles/Profile4.png') }}" onclick="imgClick('Profile4')" style="margin-top: 5%; max-width: 150px; " height="150px" alt=""></li>
+                            <li><img id="Profile5" src="{{ url_for('static', filename='Profiles/Profile5.png') }}" onclick="imgClick('Profile5')" style="margin-top: 5%; max-width: 150px; " height="150px" alt=""></li>
+                            <li><img id="Profile6" src="{{ url_for('static', filename='Profiles/Profile6.png') }}" onclick="imgClick('Profile6')" style="margin-top: 5%; max-width: 150px; " height="150px" alt=""></li>
+
+                            <li><img id="Ben"  src="{{ url_for('static', filename='Profiles/Ben.png') }}" onclick="imgClick('Ben')" style="margin-top: 5%; max-width: 150px; " height="150px" alt=""></li>
+                            <li><img id="BenGirl" src="{{ url_for('static', filename='Profiles/BenGirl.png') }}" onclick="imgClick('BenGirl')" style="margin-top: 5%; max-width: 150px; " height="150px" alt=""></li>
+                            <li><img id="Connor" src="{{ url_for('static', filename='Profiles/Connor.png') }}" onclick="imgClick('Connor')" style="margin-top: 5%; max-width: 150px; " height="150px" alt=""></li>
+                            <li><img id="ConnorGirl" src="{{ url_for('static', filename='Profiles/ConnorGirl.png') }}" onclick="imgClick('ConnorGirl')" style="margin-top: 5%; max-width: 150px; " height="150px" alt=""></li>
+                            <li><img id="Jason" src="{{ url_for('static', filename='Profiles/Jason.png') }}" onclick="imgClick('Jason')" style="margin-top: 5%; max-width: 150px; " height="150px" alt=""></li>
+                            <li><img id="JasonGirl" src="{{ url_for('static', filename='Profiles/JasonGirl.png') }}" onclick="imgClick('JasonGirl')" style="margin-top: 5%; max-width: 150px; " height="150px" alt=""></li>
+                            <li><img id="Terry" src="{{ url_for('static', filename='Profiles/Terry.png') }}" onclick="imgClick('Terry')" style="margin-top: 5%; max-width: 150px; " height="150px" alt=""></li>
+                            <li><img id="TerryGirl" src="{{ url_for('static', filename='Profiles/TerryGirl.png') }}" onclick="imgClick('TerryGirl')" style="margin-top: 5%; max-width: 150px; " height="150px" alt=""></li>
+                            <li><img id="Zac" src="{{ url_for('static', filename='Profiles/Zac.png') }}" onclick="imgClick('Zac')" style="margin-top: 5%; max-width: 150px; " height="150px" alt=""></li>
+                            <li><img id="ZacGirl" src="{{ url_for('static', filename='Profiles/ZacGirl.png') }}" onclick="imgClick('ZacGirl')" style="margin-top: 5%; max-width: 150px; " height="150px" alt=""></li>
+                            
+                            <li><img id="Kyran" src="{{ url_for('static', filename='Profiles/Kyran.png') }}" onclick="imgClick('Kyran')" style="margin-top: 5%; max-width: 150px; " height="150px" alt=""></li>
+                            <li><img id="Carissa" src="{{ url_for('static', filename='Profiles/Carissa.png') }}" onclick="imgClick('Carissa')" style="margin-top: 5%; max-width: 150px; " height="150px" alt=""></li>
+                            <li><img id="Luke" src="{{ url_for('static', filename='Profiles/Luke.png') }}" onclick="imgClick('Luke')" style="margin-top: 5%; max-width: 150px; " height="150px" alt=""></li>
+                            <li><img id="Dylan" src="{{ url_for('static', filename='Profiles/Dylan.png') }}" onclick="imgClick('Dylan')" style="margin-top: 5%; max-width: 150px; " height="150px" alt=""></li>                        
+                            <li><img id="Fawad" src="{{ url_for('static', filename='Profiles/Fawad.png') }}" onclick="imgClick('Fawad')" style="margin-top: 5%; max-width: 150px; " height="150px" alt=""></li>
+                            <li><img id="Tammy" src="{{ url_for('static', filename='Profiles/Tammy.png') }}" onclick="imgClick('Tammy')" style="margin-top: 5%; max-width: 150px; " height="150px" alt=""></li>
+                        </ul>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                <button type="button" onClick='profileSelected()' class="btn btn-primary" data-bs-dismiss="modal" style="margin: auto; width:50%;">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+        <a class="site-logo-nav" href="{{ url_for('main.index') }}"><h2>HangOut <img  style="margin-top: 0px; height: 50px; width:50px" src="{{url_for('static', filename='favicon.ico')}}" alt="99"></h2></a>
+        <div class="login-content">
+            
+            <form action="" method="POST">
+                {{form.hidden_tag()}}
+                <div class="form-group">
+                    <h3 style="color: rgb(88, 88, 88);"><strong>Register</strong></h3>
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                        <p style="color: red;">{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                    {% endwith %} 
+
+                    <img src="{{current_user.ProfilePic}}" id="mainProfilePic" style="margin-top: 5%; max-width: 150px; border-radius: 100px;" height="150px" alt=""> <br>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#Profile-Modal">Change your profile picture</a> <br>
+                                     
+                </div>
+
+                <div class="form-group">
+                    <input name="profile" id="profile" type="hidden" value="{{ current_user.ProfilePic }}">
+                </div>
+
+                <div class="form-check mt-3" style="text-align: left;">
+                    <input type="checkbox" class="form-check-input" onClick="changePassword()" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Change Password</label>
+                </div>
+
+                <div id="change-password" style="display: none;">
+                    <div class="form-group">
+                        {{form.password (class="black-text form-control")}}
+                    </div>
+
+                    <div class="form-group">
+                        {{form.confirm (class="black-text form-control")}}
+                    </div>
+                </div>
+            
+                {{form.submit (class="btn btn-primary")}}
+            </form>
+        </div>
+    </main>
+    
+  <!-- Scripts -->
+  <script type="text/javascript" src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='assets/js/owl-carousel.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='assets/js/animation.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='assets/js/imagesloaded.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='assets/js/custom.js') }}"></script>
+
+  <script>
+
+    function changePassword() {
+
+        var x = document.getElementById("change-password");
+        if (x.style.display === "none") {
+          x.style.display = "block";
+        } else {
+          x.style.display = "none";
+          document.getElementById("password").value = "";
+          document.getElementById("confirm").value = "";
+        }
+      
+    }
+
+    var selected = "none";
+
+    function imgClick(img) {
+
+        if (selected === "none") {
+            $('#' + img).css('border', 'solid 5px blue');
+            selected = img;
+        } else {
+
+            $('#' + selected).css('border', 'none');
+
+            $('#' + img).css('border', 'solid 5px blue');
+            selected = img;
+        }
+        
+    }
+
+    function profileSelected() {
+        if (selected !== "none") {            
+            $('#profile').val(selected);
+            $('#mainProfilePic').attr('src', "{{ url_for('static', filename='Profiles') }}" + "/" + selected + ".png");
+        }
+
+    }
+  </script>
+
+</body>
+</html>

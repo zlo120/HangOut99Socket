@@ -1,0 +1,181 @@
+{% extends "template.html" %}
+
+{% block header %}
+<style>
+    .event-obj {
+        text-align: center;
+        background-color: #fff;
+        width: 80%;
+        margin: auto;
+        border-radius: 5px;
+        padding:2%;
+        padding-top: 3%;
+        padding-bottom: 5%;
+        filter: drop-shadow(0 0 0.15rem rgb(172, 170, 172));
+
+        margin-bottom: 10px;
+    }
+
+    .event-obj input{
+        margin: auto;
+        text-align: center;
+        width: 50%;
+    }
+
+
+</style>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="event-obj">
+
+                <h2 class="mb-2">{{event.Name}}</h2>
+                <p class="mb-1">{{event.Description}}</p>
+                
+                {% if current_user.is_authenticated %}
+                <div class="row mt-5">
+                    <div class="col-6">
+                        <button onclick="eventAvailable()" class="btn btn-success">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" fill="#000"/>
+                          </svg></button>
+                    </div>
+
+                    <div class="col-6">
+                        <button onclick="eventUnavailable()" class="btn btn-danger">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z" fill="#000"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z" fill="#000"/>
+                          </svg></button>
+                    </div>
+                </div>
+                {% endif %}
+                
+                <hr>               
+
+                <div class="row">
+                    <div class="col-6">
+                        <h4 class="mb-4">Details</h4>
+
+                        <div class="details">
+                            <p><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                                <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
+                                <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+                              </svg> {{ event.Hangout_ID }}
+                            </p>
+                            {% if event.DateTime %}
+                            <p class="mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
+                                <path d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z"/>
+                                <path d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z"/>
+                            </svg> {{event.DateTime.strftime('%I:%M %p')}}</p>
+    
+                            <p class="mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
+                                <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                            </svg> {{event.DateTime.strftime('%d / %m / %y')}}</p>
+                            {% endif %}
+    
+                            {% if event.Location %}
+                            <p class="mb-2"><svg xmlns="http://www.w3.org/2000/svg" style="color: rgb(233, 61, 61);" width="25" height="25" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                                <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                            </svg> <a href="{{event.Link}}" target=”_blank” style="color:black;">{{event.Location}}</a></p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        {% if event.Users | length != 0 %}            
+                        <h5><strong>Going</strong></h5>
+                        <ul>
+                            {% for user in event.Users %}
+
+                            <li> <img class="mt-2" src="{{user.ProfilePic}}" height="50px" style="width:50px; border-radius:50px;" alt=""> <br>{{user.Username}}</li>
+
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+
+                        <br>
+
+                        {% if event.UnavailableUsers | length != 0 %}                        
+                        <h5><strong>Can't Make It</strong></h5>
+                        <ul>
+                            {% for user in event.UnavailableUsers %}
+
+                            <li> <img class="mt-2" src="{{user.ProfilePic}}" height="50px" style="width:50px; border-radius:50px;" alt=""> <br>{{user.Username}}</li>
+
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+                </div>                
+
+                <hr>
+
+                <h4 class="mb-3">Share an this event</h4>
+
+                <input id="link" type="text" class="form-control" value="{{url_for('event.event', id = event.ID , _external = True )  }}" readonly>
+                <button class="mt-1 btn btn-primary" onclick="copy()">Copy to clipboard</button>
+
+                {% if current_user.ID == event.Creator_ID %}
+
+                <hr>
+
+                <a class="btn btn-secondary" href="{{ url_for('event.edit', id = event.ID) }}">Edit details</a>
+
+                {% endif %}
+
+                
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% if current_user.is_authenticated %}
+{% block script %}
+function copy() {
+    var copyText = document.querySelector("#link");
+    copyText.select();
+    document.execCommand('copy');
+}
+
+function eventAvailable() {
+    (async () => {
+    const rawResponse = await fetch('{{url_for('event.interested')}}' , {
+        method: 'POST',
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify( { {{current_user.ID}} : '{{current_user.Username}}' , 'EventID': '{{event.ID}}' } )
+    });
+
+    const content = await rawResponse.json();
+
+    console.log(content);
+    })();
+    setTimeout(() => { location.reload(); }, 200);
+}
+
+function eventUnavailable() {
+    (async () => {
+    const rawResponse = await fetch('{{url_for('event.unavailable')}}' , {
+        method: 'POST',
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify( { {{current_user.ID}} : '{{current_user.Username}}' , 'EventID': '{{event.ID}}' } )
+    });
+
+    const content = await rawResponse.json();
+
+    console.log(content);
+    })();
+    setTimeout(() => { location.reload(); }, 200);
+}
+{% endblock %}
+{% endif %}

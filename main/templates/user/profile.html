@@ -1,0 +1,67 @@
+{% extends "template.html" %}
+
+{% block header %}
+<style>
+    html, body {
+        background-color: #f5f7f8;
+    }
+    
+    .profile {
+        text-align: center;
+        background-color: #fff;
+        width: 100%;
+        border-radius: 5px;
+        padding:2%;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        filter: drop-shadow(0 0 0.15rem rgb(172, 170, 172));
+
+        margin-bottom: 10px;
+    }
+
+    .profile-content {
+        text-align: center;
+        background-color: #fff;
+        margin: auto;
+        width: 60%;
+        border-radius: 5px;
+        padding:2%;
+        padding-top: 3%;
+        padding-bottom: 3%;
+        filter: drop-shadow(0 0 0.15rem rgb(172, 170, 172));
+
+        margin-bottom: 10px;
+    }
+</style>
+{% endblock %}
+
+
+
+{% block body %}
+    
+{% if user == None %}
+
+<div class="profile-content"><h1>This user doesn't exist...</h1></div>
+
+
+{% else %}
+
+<div class="profile-content">
+
+    <img src="{{user.ProfilePic}}" height="200px" style="width: 200px; border-radius:100px;" alt="">
+
+    <h1 class="mt-3">{{user.Username}}</h1>
+    
+    {% if current_user.ID == user.ID %}
+
+    <hr>
+
+    <a href=" {{url_for('user.account') }} " class="btn btn-secondary">Go To Your Account</a>
+
+    {% endif %}
+
+</div>
+
+{% endif %}
+
+{% endblock %}
